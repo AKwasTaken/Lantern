@@ -2,12 +2,14 @@
   <img src="assets/logo.png" alt="Lantern Logo" width="128" height="128">
 </p>
 
-<h1 align='center'>Lantern</h1>
+
 
 <div align='center'>
+<h1>Lantern</h1>
 <img src='https://img.shields.io/badge/Swift-6.3-blue'></img>
 <img src='https://img.shields.io/badge/License-MIT-yellow'></img>
 <img src='https://www.codefactor.io/repository/github/akwastaken/lantern/badge'></img>
+<br><br>
 </div>
 
 Lantern is a lightweight, menu-bar-only GUI wrapper for Cloudflare's `warp-cli` on macOS.
