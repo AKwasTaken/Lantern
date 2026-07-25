@@ -8,8 +8,8 @@
 <h1>Lantern</h1>
 <img src='https://img.shields.io/badge/Swift-6.3-blue'></img>
 <img src='https://img.shields.io/badge/License-MIT-yellow'></img>
-<img src='https://www.codefactor.io/repository/github/akwastaken/lantern/badge'></img>
-<br><br>
+<a href="https://www.codefactor.io/repository/github/akwastaken/lantern"><img src="https://www.codefactor.io/repository/github/akwastaken/lantern/badge" alt="CodeFactor" /></a>
+<br><br><br>
 </div>
 
 Lantern is a lightweight, menu-bar-only GUI wrapper for Cloudflare's `warp-cli` on macOS.
@@ -23,6 +23,8 @@ It was built out of frustration with Cloudflare's enshittified, bloated and intr
 * **No Bloat:** It sits exclusively in your menu bar. No windows whatsoever.
 * **Old-School Simplicity:** Restores the classic WARP menu-bar behavior, which is click to open a clean dropdown to toggle connection, and get out of the way.
 * **Lightweight:** Built natively in SwiftUI to keep resource usage minimal.
+
+![Showcase Video](assets/showcase.mp4)
 
 ---
 
