@@ -24,7 +24,8 @@ It was built out of frustration with Cloudflare's enshittified, bloated and intr
 * **Old-School Simplicity:** Restores the classic WARP menu-bar behavior, which is click to open a clean dropdown to toggle connection, and get out of the way.
 * **Lightweight:** Built natively in SwiftUI to keep resource usage minimal.
 
-[![Watch Showcase](assets/logo.jpg)](https://github.com/AKwasTaken/Lantern/blob/main/assets/showcase.webm)
+![Showcase](assets/showcase.gif)
+
 
 ---
 
