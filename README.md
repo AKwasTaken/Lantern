@@ -46,7 +46,7 @@ Lantern requires `warp-cli` to be present on your system to perform connection c
 
 You can satisfy this requirement in two ways:
 1. **Official Cloudflare WARP App:** Keep the official app installed. Lantern will talk directly to its underlying `warp-cli` binary. (The official app DOES NOT NEED TO BE RUNNING (yay)).
-2. **Standalone `warp-cli`:** Modified from the original app, with the GUI removed. The tutorial for extracting the cli yourself from the official app is ![here](https://github.com/AKwasTaken/Lantern/wiki).
+2. **Standalone `warp-cli`:** Modified from the original app, with the GUI removed. The tutorial for extracting the cli yourself from the official app is [here](https://github.com/AKwasTaken/Lantern/wiki).
 
 ---
 
