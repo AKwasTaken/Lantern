@@ -24,7 +24,11 @@ It was built out of frustration with Cloudflare's enshittified, bloated and intr
 * **Old-School Simplicity:** Restores the classic WARP menu-bar behavior, which is click to open a clean dropdown to toggle connection, and get out of the way.
 * **Lightweight:** Built natively in SwiftUI to keep resource usage minimal.
 
-![Showcase Video](assets/showcase.mp4)
+<video width='100%'>
+<source src='assets/showcase.mp4' type='video/mp4'/>
+Your browser does not support the video tag.
+</video>
+
 
 ---
 
