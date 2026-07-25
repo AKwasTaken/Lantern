@@ -1,0 +1,17 @@
+xcuserdata/
+*.xcuserdatad/
+DerivedData/
+build/
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon\r
+
+.build/
+.swiftpm/xcode/package.resolved
+.swiftpm/xcode/xcshareddata/swiftpm/Package.resolved
+
+*.swp
+*~
+*.bak
