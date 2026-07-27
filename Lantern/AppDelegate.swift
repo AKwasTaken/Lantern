@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     let warp = WarpManager.shared
     private var cancellables = Set<AnyCancellable>()
+    private var localEventMonitor: Any?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -39,6 +40,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.updateStatusIcon() }
             .store(in: &cancellables)
+
+        // LISTEN FOR GLOBAL CMD + COMMA KEYSTROKE SYSTEM-WIDE
+        localEventMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "," {
+                self?.openPreferences()
+                return nil // Consume event to suppress error beep
+            }
+            return event
+        }
+    }
+
+    deinit {
+        if let monitor = localEventMonitor {
+            NSEvent.removeMonitor(monitor)
+        }
     }
 
     // MARK: - Click handling (left = popover, right = menu)
@@ -78,6 +94,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
 
         let prefsItem = NSMenuItem(title: "Preferences", action: #selector(openPreferences), keyEquivalent: ",")
+        prefsItem.keyEquivalentModifierMask = [.command]
         prefsItem.target = self
         menu.addItem(prefsItem)
 
@@ -98,13 +115,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func selectDoH() { warp.setMode(.doh) }
     @objc func selectWarp() { warp.setMode(.warp) }
 
+    @objc func showPreferencesWindow(_ sender: Any?) {
+        openPreferences()
+    }
+
     @objc func openPreferences() {
-        popover.performClose(nil)
+        popover?.performClose(nil)
         PreferencesWindowController.shared.showWindow()
     }
 
     @objc func openAbout() {
-        popover.performClose(nil)
+        popover?.performClose(nil)
         AboutWindowController.shared.showWindow()
     }
 

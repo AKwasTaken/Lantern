@@ -1,3 +1,8 @@
+//
+//  LanternApp.swift
+//  Lantern
+//
+
 import SwiftUI
 
 @main

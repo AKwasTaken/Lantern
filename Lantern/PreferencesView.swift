@@ -30,33 +30,51 @@ struct PreferencesView: View {
     @State private var selectedTab: PreferenceTab = .general
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 4) {
+        HStack(spacing: 0) {
+            // Sidebar
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Lantern")
+                    .font(.system(size: 25, weight: .bold))
+                    .padding(.horizontal, 14)
+                    .padding(.top, 16)
+                    .padding(.bottom, 10)
+                
+                Divider()
+                    .padding(.bottom, 8)
+
                 ForEach(PreferenceTab.allCases) { tab in
                     Button {
                         selectedTab = tab
                     } label: {
-                        HStack(spacing: 6) {
+                        HStack(spacing: 8) {
                             Image(systemName: tab.icon)
+                                .frame(width: 16)
                             Text(tab.rawValue)
+                            Spacer()
                         }
                         .font(.system(size: 13, weight: selectedTab == tab ? .semibold : .regular))
-                        .foregroundColor(selectedTab == tab ? .white : .gray)
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 12)
+                        .foregroundColor(selectedTab == tab ? .white : .primary.opacity(0.85))
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, 10)
+                        .frame(maxWidth: .infinity) // Expands the content to full width
+                        .contentShape(Rectangle())  // Makes the entire full-width area hit-testable
                         .background(
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(selectedTab == tab ? Color.blue : Color.clear)
+                                .fill(selectedTab == tab ? Color.accentColor : Color.clear)
                         )
                     }
                     .buttonStyle(.plain)
+                    .padding(.horizontal, 8)
                 }
+                Spacer()
             }
-            .padding(.vertical, 10)
-            .padding(.horizontal, 16)
-            .frame(maxWidth: .infinity)
+            .frame(width: 170)
+            .frame(maxHeight: .infinity)
             .background(Color(NSColor.windowBackgroundColor))
 
+            Divider()
+
+            // Detail View
             Group {
                 switch selectedTab {
                 case .general:
@@ -71,7 +89,7 @@ struct PreferencesView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(width: 560, height: 490)
+        .frame(width: 600, height: 600)
     }
 }
 

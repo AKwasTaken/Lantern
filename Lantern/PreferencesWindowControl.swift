@@ -1,35 +1,35 @@
 //
-//  PreferencesWindowControl.swift
+//  PreferencesWindowController.swift
 //  Lantern
-//
-//  Created by Aneeth Kumaar on 25/07/26.
 //
 
 import Cocoa
 import SwiftUI
 
-final class PreferencesWindowController: NSObject, NSWindowDelegate {
-    static let shared = PreferencesWindowController()
-    private var window: NSWindow?
-
+final class PreferencesWindowController: NSWindowController {
+    static let shared: PreferencesWindowController = {
+        let hosting = NSHostingController(
+            rootView: PreferencesView().environmentObject(WarpManager.shared)
+        )
+        
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 600, height: 600),
+            styleMask: [.titled, .closable, .fullSizeContentView],
+            backing: .buffered,
+            defer: false
+        )
+        
+        window.title = "Lantern Preferences"
+        window.titleVisibility = .visible
+        window.isMovableByWindowBackground = true
+        window.contentViewController = hosting
+        window.isReleasedWhenClosed = false
+        window.center()
+        
+        return PreferencesWindowController(window: window)
+    }()
+    
     func showWindow() {
-        if window == nil {
-            let hosting = NSHostingController(
-                rootView: PreferencesView().environmentObject(WarpManager.shared)
-            )
-            let w = NSWindow(contentViewController: hosting)
-            w.title = "Preferences"
-            w.styleMask = [.titled, .closable, .miniaturizable]
-            w.setContentSize(NSSize(width: 560, height: 490))
-            w.center()
-            w.delegate = self
-            w.isReleasedWhenClosed = false
-            
-            w.titlebarAppearsTransparent = true
-            w.titleVisibility = .visible
-
-            window = w
-        }
         window?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
