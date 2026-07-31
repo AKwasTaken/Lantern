@@ -46,14 +46,23 @@ struct PopoverView: View {
 
             Spacer(minLength: 20)
 
-            Button(action: { warp.toggle() }) {
+            Button(action: {
+                if warp.connectionState == .connecting {
+                    warp.forceDisconnect()
+                } else {
+                    warp.toggle()
+                }
+            }) {
                 Image(warp.connectionState == .connected ? "LogoConnected" : "LogoDisconnected")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 130, height: 130)
+                    // Lowers opacity to 50% only while connecting to give visual feedback
+                    .opacity(warp.connectionState == .connecting ? 0.5 : 1.0)
             }
             .buttonStyle(.plain)
-            .disabled(!warp.cliAvailable || warp.connectionState == .connecting || warp.connectionState == .disconnecting)
+            // Enable button during .connecting so clicks register for forceDisconnect()
+            .disabled(!warp.cliAvailable || warp.connectionState == .disconnecting)
             .opacity(warp.cliAvailable ? 1.0 : 0.4)
 
             Spacer(minLength: 22)

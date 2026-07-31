@@ -115,6 +115,18 @@ final class WarpManager: ObservableObject {
     }
 
     // MARK: - Public actions
+    
+    func forceDisconnect() {
+        connectionState = .disconnecting
+//        statusDetail = "Force disconnecting..."
+        
+        runAsync(["disconnect"]) { [weak self] output, success in
+            guard let self else { return }
+            self.connectionState = .disconnected
+//            self.statusDetail = "Disconnected"
+            self.refreshStatus()
+        }
+    }
 
     func connect() {
         connectionState = .connecting
